@@ -1,0 +1,51 @@
+\RequirePackage{luatex85}
+\documentclass{standalone}
+
+\usepackage{amsmath}
+\newcommand{\vect}[1]{\mathbf{#1}}
+
+\usepackage{fontspec, unicode-math}
+\setsansfont[Scale=MatchLowercase]{TeX Gyre Heros}
+\setmathfont{TeX Gyre Termes Math}
+\setmathfont[range={"2211, "222B, "2113}]{Latin Modern Math}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.14}
+
+\tikzset{
+  every picture/.style={font={\sffamily\normalsize}, >=stealth},
+  every pin edge/.style={black}}
+
+\begin{document}
+
+  \begin{tikzpicture}[
+    kFold/.style={
+      draw, font=\sffamily\footnotesize,
+      align=center,
+      rectangle split,
+      rectangle split horizontal,
+      minimum height=1cm},
+    test/.style={text width=2cm}]
+
+    \node[kFold, rectangle split parts=2] at (0, 3) [
+           label=180:1st Iteration,
+           label=0:$\mathrm{MSE}_{1}$]
+    {
+      \nodepart[test]{one}{\sffamily\bfseries $\vect{x}_{1}$}
+      \nodepart[text width=8cm]{two}$\ell-1$
+    };
+
+    \node at (0, 1.5) {$\vdots$};
+
+    \node[kFold, rectangle split parts=2] at (0, 0) [
+           label=180:$\ell$th Iteration,
+           label=0:$\mathrm{MSE}_{\ell}$]
+    {
+      \nodepart[text width=8cm]{one}$\ell-1$
+      \nodepart[test]{two}{\sffamily\bfseries $\vect{x}_{\ell}$}
+    };
+  \end{tikzpicture}
+
+\end{document}

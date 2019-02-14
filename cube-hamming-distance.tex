@@ -1,0 +1,61 @@
+\RequirePackage{luatex85}
+\documentclass{standalone}
+
+\usepackage{amsmath}
+
+\usepackage{fontspec, unicode-math}
+\setsansfont[Scale=MatchLowercase]{TeX Gyre Heros}
+\setmathfont{TeX Gyre Termes Math}
+
+\usepackage{tikz}
+\usetikzlibrary{quotes}
+
+\tikzset{
+  every picture/.style={font={\sffamily\normalsize}, >=stealth},
+  every pin edge/.style={black}}
+
+\begin{document}
+
+  \begin{tikzpicture}[every node/.style={font=\sffamily\small},
+    every circle node/.style={draw, fill=black, draw=white, scale=0.5, line width=2pt},
+    every label/.style={font=\scriptsize}, quotes mean label]
+
+    % C 1
+    \node[circle, "{$0$}"] (A) at (0, 0) {};
+    \node[circle, "{$1$}"] (B) at (2, 0) {};
+
+    \node at (1, -1) {Cube 1};
+
+    \draw[-] (A) to (B);
+
+    %C 2
+    \node[circle, "{$0,0$}" below] (A) at (4, 0) {};
+    \node[circle, "{$0,1$}" below] (B) at (6, 0) {};
+    \node[circle, "{$1,0$}"]       (C) at (4, 2) {};
+    \node[circle, "{$1,1$}"]       (D) at (6, 2) {};
+
+    \node at (5, -1) {Cube 2};
+
+    \draw[-] (A) to (B) to (D) to (C) to (A);
+
+    % C 3
+    \node[circle, "{$0,0,0$}" below]       (A) at (8, 0)     {};
+    \node[circle, "{$0,0,1$}" below]       (B) at (10, 0)    {};
+    \node[circle, "{$1,0,0$}" below right] (C) at (8.75, 1)  {};
+    \node[circle, "{$1,0,1$}" below right] (D) at (10.75, 1) {};
+    \node[circle, "{$0,1,0$}" above left]  (E) at (8, 2)     {};
+    \node[circle, "{$0,1,1$}" above left]  (F) at (10, 2)    {};
+    \node[circle, "{$1,1,0$}"]             (G) at (8.75, 3)  {};
+    \node[circle, "{$1,1,1$}"]             (H) at (10.75, 3) {};
+
+    \node at (9.375, -1) {Cube 3};
+
+    \draw[-] (A) to (B) to (D) to (C) to (A);
+    \draw[-] (E) to (F) to (H) to (G) to (E);
+    \draw[-] (A) to (E);
+    \draw[-] (B) to (F);
+    \draw[-] (C) to (G);
+    \draw[-] (D) to (H);
+  \end{tikzpicture}
+
+\end{document}

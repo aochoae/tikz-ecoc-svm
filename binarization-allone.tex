@@ -1,0 +1,40 @@
+\RequirePackage{luatex85}
+\documentclass{standalone}
+
+\usepackage{amsmath}
+
+\usepackage{fontspec, unicode-math}
+\setsansfont[Scale=MatchLowercase]{TeX Gyre Heros}
+\setmathfont{TeX Gyre Termes Math}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.14}
+
+\tikzset{
+  every picture/.style={font={\sffamily\normalsize}, >=stealth},
+  every pin edge/.style={black}}
+
+\begin{document}
+
+  \begin{tikzpicture}
+    \begin{axis}[class/.style={color=black, dashed}]
+
+      \addplot[class] coordinates {(1, 8.5) (3, 6.5) (7, 7) (8.5, 8.5)};
+
+      \addplot[
+        scatter,
+        only marks,
+        point meta=explicit symbolic,
+        scatter/classes={
+          a={mark=square*, draw=white, fill=black},
+          b={mark=o, black},
+          c={mark=triangle*, black},
+          d={mark=*, black},
+          e={mark=diamond*, black}
+        }] table[meta=label] {binarization.dat};
+
+    \end{axis}
+  \end{tikzpicture}
+
+\end{document}

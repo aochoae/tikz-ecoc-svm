@@ -1,0 +1,48 @@
+\RequirePackage{luatex85}
+\documentclass{standalone}
+
+\usepackage{amsmath}
+
+\usepackage{fontspec, unicode-math}
+\setsansfont[Scale=MatchLowercase]{TeX Gyre Heros}
+\setmathfont{TeX Gyre Termes Math}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.14}
+
+\tikzset{
+  every picture/.style={font={\sffamily\normalsize}, >=stealth},
+  every pin edge/.style={black}}
+
+\begin{document}
+
+  \begin{tikzpicture}
+    \begin{semilogyaxis}[xmin=3, xmax=7, ymin=0, domain=3:7,
+      legend pos=outer north east, legend cell align=left, cycle list name={exotic},
+      ylabel={Number of Learners}, xlabel={$k$}]
+
+      \addplot {x};
+      \addlegendentry{One-vs-All};
+
+      \addplot {x-1};
+      \addlegendentry{Ordinal};
+
+      \addplot {(2^(x-1))-1};
+      \addlegendentry{Binary complete};
+
+      \addplot {10 * log2(x)};
+      \addlegendentry{Dense random};
+
+      \addplot {(x*(x-1))/2};
+      \addlegendentry{Uno-vs-uno};
+
+      \addplot {(3^(x)-2^(x+1)+1)/2};
+      \addlegendentry{Ternary complete};
+
+      \addplot {15 * log2(x)};
+      \addlegendentry{Sparse random};
+    \end{semilogyaxis}
+  \end{tikzpicture}
+
+\end{document}
