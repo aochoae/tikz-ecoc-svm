@@ -1,5 +1,7 @@
 # Support-Vector Machine with TikZ
 
+[![DOI](https://zenodo.org/badge/170639472.svg)](https://zenodo.org/badge/latestdoi/170639472)
+
 ## Requirements
 
 * LuaTeX, Version 0.95.0
