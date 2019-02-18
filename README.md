@@ -12,6 +12,17 @@
 * Font TeX Gyre Heros
 * Font TeX Gyre Termes Math
 
+## BibTeX
+
+    @misc{Ochoa2019_2564470,
+      author = {Luis A. Ochoa},
+      title  = {Support-Vector Machine with TikZ},
+      month  = feb,
+      year   = 2019,
+      doi    = {10.5281/zenodo.2564470},
+      url    = {https://doi.org/10.5281/zenodo.2564470}
+    }
+
 ## Build
 
     make build
